@@ -1,14 +1,14 @@
-{include file="header.tpl"}
+{include file='templates/header.tpl'}
 
 <div class="container">
-
-    <div class="row mt-4">
-        <div class="col-md-4">
+<!--verifica que estoy logueada si no no me deja entrar hasta loguearme--->
+    <div class="row mt-6">
+        <div class="col-md-6">
             <h2>Log In</h2>
             <form class="form-alta" action="verify" method="post">
-                <input placeholder="nombre" type="text" name="nombre" id="nombre" required>
-                <input placeholder="password" type="password" name="password" id="password" required>
-                <input type="submit" class="btn btn-primary">
+                <input type="email" name="nombre" id="email" placeholder="email"  required>
+                <input  type="password" name="password" id="password" placeholder="password" required>
+                <input type="submit" class="btn btn-primary" value="Login">
             </form>
         </div>
     </div>
@@ -16,4 +16,4 @@
 
 </div>
 
-{include file='footer.tpl'}
+{include file='templates/footer.tpl'}

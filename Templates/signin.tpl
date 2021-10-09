@@ -1,14 +1,13 @@
-{include file="header.tpl"}
+{include file='templates/header.tpl'}
 
 <div class="container">
-
     <div class="row mt-4">
         <div class="col-md-4">
-            <h2>Sign In</h2>
+            <h2>{$titulo}</h2>
             <form class="form-alta" action="verifySignIn" method="post">
-                <input placeholder="nombre" type="text" name="nombre" id="nombre" required>
-                <input placeholder="password" type="password" name="password" id="password" required>
-                <input type="submit" class="btn btn-primary" value="Signin">
+                <input  name="nombre" placeholder="email" type="email" id="email" required>
+                <input name="password" placeholder="password" type="password"  id="password" required>
+                <input type="submit" class="btn btn-primary" value="Sign In">
             </form>
         </div>
     </div>
@@ -16,4 +15,4 @@
 
 </div>
 
-{include file='footer.tpl'}
+{include file='templates/footer.tpl'}

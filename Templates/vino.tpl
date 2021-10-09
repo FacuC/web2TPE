@@ -1,38 +1,40 @@
 {include file="header.tpl"}
-<ul>
+
+<ul class="list-group-hover-bg "> 
     <li>{$vino->nombre}</li>
     <li>{$vino->descripcion}</li>
     <li>$ {$vino->precio}</li>
     <li>{$vino->bodega}</li>
-    <li><a href="deleteVino/{$vino->id_vino}">Borrar</a></li>
+    {if $logueado}
+      <li><a href="deleteVino/{$vino->id_vino}">Borrar</a></li>
+    {/if}
+    
 </ul>
-
-<form action="updateVino/{$vino->id_vino}" method="post">
+{if $logueado}
+  <form class="form-alta" action="updateVino/{$vino->id_vino}" method="post">
     <div class="form-group">
-        <label for="nombreVino">nombre</label>
-        <input required name="nombre" type="text" class="form-control" id="nombreVino"
-            placeholder="Inserte el nombre del vino">
+      <label for="exampleInputEmail1">Nombre</label>
+      <input type="text" name="nombre" class="form-control" id="exampleInputEmail1"  aria-describedby="emailHelp" placeholder="nombre">
     </div>
     <div class="form-group">
-        <label for="descripcionVino">descripcion</label>
-        <input required name="descripcion" type="text" class="form-control" id="descripcionVino"
-            placeholder="Descripcion corta del vino">
+      <label for="exampleInputPassword1">Descripcion</label>
+      <input type="text" name="descripcion" class="form-control" id="exampleInputPassword1" placeholder="descripcion">
     </div>
     <div class="form-group">
-        <label for="precioVino">precio</label>
-        <input required name="precio" type="number" class="form-control" id="precioVino" placeholder="Precio">
+      <label for="exampleInputPassword1">Precio</label>
+      <input type="number" name="precio" class="form-control" id="exampleInputPassword1" placeholder="precio">
     </div>
-
+    
     <div class="form-group">
-        <label for="Bodega">Bodega</label>
-        <select name="bodega" id="bodega" class="form-control" id="Bodega">
-            {foreach from=$bodegas item=bodega}
-                <option value="{$bodega->id_bodega}">{$bodega->nombre}</option>
-            {/foreach}
-        </select>
+    <label for="exampleFormControlSelect1">Bodega</label>
+    <select name="bodega" class="form-control" id="exampleFormControlSelect1">
+        {foreach from=$bodegas item=$bodega}
+          <option value="{$bodega->id_bodega}">{$bodega->nombre}</option>
+        {/foreach}
+    </select>
     </div>
-
-    <button type="submit" class="btn btn-primary">Update</button>
-</form>
-
+    
+    <button type="submit" class="btn btn-primary">update</button>
+  </form>
+  {/if}
 {include file="footer.tpl"}

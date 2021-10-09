@@ -11,7 +11,9 @@ a {
 a:focus {
   color: #222;
 }
-
+table{
+  margin: auto;
+}
 header {
   height: 50vh;
   display: -webkit-box;

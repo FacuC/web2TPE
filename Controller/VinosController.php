@@ -1,100 +1,127 @@
 <?php
 
-require_once "./Model/VinosModel.php";
-require_once "./Model/BodegasModel.php";
-require_once "./View/VinosView.php";
-require_once "./View/BodegasView.php";
-require_once "./Helpers/AuthHelper.php";
+require_once'Model/VinosModel.php';
+require_once'Model/BodegasModel.php';
+require_once'View/BodegasView.php';
+require_once'View/VinosView.php';
+require_once'Helper/AuthHelper.php';
 
-class VinosController
-{
+    class VinosController{
 
-    private $model;
-    private $modelBodegas;
-    private $view;
-    private $viewBodegas;
-    private $authHelper;
+        private $model;
+        private $view;
+        private $modelBodegas;
+        private $viewBodegas;
+        private $authHelper;
 
-    function __construct()
-    {
-        $this->model = new VinosModel();
-        $this->modelBodegas = new BodegasModel();
-        $this->view = new VinosView();
-        $this->viewBodegas = new BodegasView();
-        $this->authHelper = new AuthHelper();
-    }
+        function __construct()
+        {
+            $this->model = new VinosModel();
+            $this->view = new VinosView();
+            $this->modelBodegas = new BodegasModel();
+            $this->viewBodegas = new BodegasView();
+            $this->authHelper = new AuthHelper();
+        }
 
-    function showHome()
-    {
-        $bodegas = $this->modelBodegas->getBodegas();
-        $vinos = $this->model->getVinos();
-        $this->view->showVinos($vinos, $bodegas);
-    }
+        function showHome(){
+            $logueado = false;
+            $usuario ='';
+            if ($this->authHelper->estaLogueado()) {
+                $logueado = true; 
+                $usuario = $this->authHelper->getUserName();
+            }
+            $bodega = $this->modelBodegas->getBodegas();
+            $vinos = $this->model->getVinos();
+            $this->view->showVinos($vinos,$bodega,$logueado,$usuario);
+        }
+        function showVino($id){//muestra un vino
+            $logueado = false;
+            $usuario ='';
+            if ($this->authHelper->estaLogueado()) {
+                $logueado = true; 
+                $usuario = $this->authHelper->getUserName($logueado);
+            }
+            $bodegas = $this->modelBodegas->getBodegas();
+            $vino = $this->model->getVino($id);
+            $this->view->showVino($vino,$bodegas,$logueado,$usuario);
+        }
 
-    function showVino($id)
-    {
-        $vino = $this->model->getVino($id);
-        $bodegas = $this->modelBodegas->getBodegas();
-        $this->view->showVino($vino, $bodegas);
-    }
+        function showVinosEnBodega($id){// muestra los vinos de esa bodega
+            $logueado = false;
+            $usuario ='';
+            if ($this->authHelper->estaLogueado()) {
+                $logueado = true; 
+                $usuario = $this->authHelper->getUserName($logueado);
+            }
+            $bodega = $this->modelBodegas->getBodega($id);
+            $vino = $this->model->getVinosEnBodega($id);
+            $this->view->showVinosEnBodega($vino,$bodega,$logueado,$usuario);
+        }
 
-    function showVinosEnBodega($id_bodega)
-    {
-        $bodega = $this->modelBodegas->getBodega($id_bodega);
-        $vinos = $this->model->getVinosEnBodega($id_bodega);
-        $this->view->showVinosEnBodega($vinos, $bodega);
-    }
+        function createVino(){//creo un vino 
+            
+            $this->authHelper->checkLoggedIn();
+            $this->model->insertVino($_POST['nombre'], $_POST['descripcion'], $_POST['precio'], $_POST['bodega']);
+            $this->showHome();
+        }
+    
+        function deleteVino($id){
+            $this->authHelper->checkLoggedIn();//is Logged In = estas registrado
+            $this->model->deleteVino($id);
+            $this->showHome();
+           
+        }
+    
+        function updateVino($id){
+            $this->authHelper->checkLoggedIn();
+    
+            $this->model->updateVino($id,$_POST['nombre'], $_POST['descripcion'], $_POST['precio'], $_POST['bodega']);
+            $this->showHome();
+        }
 
-    function createVino()
-    {
-        $this->authHelper->checkLoggedIn();
-        $this->model->insertVino($_POST['nombre'], $_POST['descripcion'], $_POST['precio'], $_POST['bodega']);
-        $this->showHome();
-    }
-    function deleteVino($id)
-    {
-        $this->authHelper->checkLoggedIn();
-        $this->model->deleteVino($id);
-        $this->showHome();
-    }
-    function updateVino($id)
-    {
-        $this->authHelper->checkLoggedIn();
-        $this->model->updateVino($id, $_POST['nombre'], $_POST['descripcion'], $_POST['precio'], $_POST['bodega']);
-        $this->showVino($id);
-    }
+   ////bodegas
+        function showBodegas(){
 
-    // -----------BODEGAS-----------
+            $logueado = false;
+            $usuario ='';
+            if ($this->authHelper->estaLogueado()) {
+                $logueado = true; 
+                $usuario = $this->authHelper->getUserName($logueado);
+            }
+            $bodegas = $this->modelBodegas->getBodegas();
+            $this->viewBodegas->showBodegas($bodegas,$logueado,$usuario);
+        }
 
+        function insertarBodegas(){
 
-    function showBodegas()
-    {
-        $bodegas = $this->modelBodegas->getBodegas();
-        $this->viewBodegas->showBodegas($bodegas);
-    }
+            $this->authHelper->checkLoggedIn();
+            $this->modelBodegas->insertBodegas($_POST['nombre'], $_POST['ubicacion'], $_POST['contacto']);
+            $this->showBodegas();
+           /* }
+            else{
+                header("Location: ".BASE_URL."login");
+            }*/
+        } 
 
-    function createBodega()
-    {
-        $this->authHelper->checkLoggedIn();
-        $this->modelBodegas->createBodega($_POST['nombre'], $_POST['ubicacion'], $_POST['contacto']);
-        $this->showBodegas();
-    }
-    function deleteBodega($id)
-    {
-        $this->authHelper->checkLoggedIn();
-        $vinos = $this->model->getVinosEnBodega($id);
+        function deleteBodega($id){
+            
+            $this->authHelper->checkLoggedIn();
+            $vinos = $this->model->getVinosEnBodega($id);
 
-        if (count($vinos) > 0) {
-            $this->viewBodegas->showError();
-        } else {
-            $this->modelBodegas->deleteBodega($id);
+            if (count($vinos) > 0) {//si la bodega tiene vino no se puede borrar
+                $this->viewBodegas->showError();
+            }
+            else {
+                $this->modelBodegas->deleteBodegas($id);//borrala
+                $this->showBodegas();
+            }
+        }
+    
+        function updateBodega($id){
+            
+            $this->authHelper->checkLoggedIn();
+            $this->modelBodegas->updateBodegas($id,$_POST['nombre'], $_POST['ubicacion'], $_POST['contacto']);
             $this->showBodegas();
         }
     }
-    function updateBodega($id)
-    {
-        $this->authHelper->checkLoggedIn();
-        $this->modelBodegas->updateBodega($id, $_POST['nombre'], $_POST['ubicacion'], $_POST['contacto']);
-        $this->showBodegas();
-    }
-}
+    
