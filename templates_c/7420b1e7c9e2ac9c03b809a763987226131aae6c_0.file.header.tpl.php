@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-10-09 21:45:37
+/* Smarty version 3.1.39, created on 2021-10-09 23:45:12
   from 'C:\xampp\htdocs\TPEWeb2\templates\header.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_6161f161c00c09_96179114',
+  'unifunc' => 'content_61620d6853c2a4_12573199',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '7420b1e7c9e2ac9c03b809a763987226131aae6c' => 
     array (
       0 => 'C:\\xampp\\htdocs\\TPEWeb2\\templates\\header.tpl',
-      1 => 1633808735,
+      1 => 1633815888,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6161f161c00c09_96179114 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61620d6853c2a4_12573199 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -44,9 +44,14 @@ function content_6161f161c00c09_96179114 (Smarty_Internal_Template $_smarty_tpl)
 
     <header>
         <div class="login">
-            <a href="./login">Log In</a>
-            <a href="./signIn">Sign In</a>
-            <a href="./logout">Log Out</a>
+            <?php if ($_smarty_tpl->tpl_vars['logueado']->value) {?>
+                <a href="#"><?php echo $_smarty_tpl->tpl_vars['usuario']->value;?>
+</a>
+                <a href="./logout">Log Out</a>
+            <?php } else { ?>
+                <a href="./login">Log In</a>
+                <a href="./signIn">Sign In</a>
+            <?php }?>
         </div>
 
         <h1>
@@ -58,7 +63,6 @@ function content_6161f161c00c09_96179114 (Smarty_Internal_Template $_smarty_tpl)
 
 
     <nav class="navbar navbar-expand-lg">
-        <!--<a class="navbar-brand" href="#">Navbar</a>-->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon">
@@ -69,7 +73,7 @@ function content_6161f161c00c09_96179114 (Smarty_Internal_Template $_smarty_tpl)
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-                                <li class="nav-item">
+                <li class="nav-item">
                     <a class="nav-link" href="./home">Home</a>
                 </li>
                 <img src="./img/favicon.svg" alt="" srcset="">
@@ -78,6 +82,5 @@ function content_6161f161c00c09_96179114 (Smarty_Internal_Template $_smarty_tpl)
                 </li>
             </ul>
         </div>
-
 </nav><?php }
 }

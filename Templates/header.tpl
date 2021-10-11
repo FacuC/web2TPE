@@ -17,9 +17,13 @@
 
     <header>
         <div class="login">
-            <a href="./login">Log In</a>
-            <a href="./signIn">Sign In</a>
-            <a href="./logout">Log Out</a>
+            {if $logueado}
+                <a href="#">{$usuario}</a>
+                <a href="./logout">Log Out</a>
+            {else}
+                <a href="./login">Log In</a>
+                <a href="./signIn">Sign In</a>
+            {/if}
         </div>
 
         <h1>
@@ -31,7 +35,6 @@
 
 
     <nav class="navbar navbar-expand-lg">
-        <!--<a class="navbar-brand" href="#">Navbar</a>-->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon">
@@ -42,9 +45,6 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-                {* <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                    </li> *}
                 <li class="nav-item">
                     <a class="nav-link" href="./home">Home</a>
                 </li>
@@ -54,5 +54,4 @@
                 </li>
             </ul>
         </div>
-
 </nav>

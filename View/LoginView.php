@@ -15,6 +15,8 @@ class LoginView
     {
         $this->smarty->assign('titulo', 'Log In');
         $this->smarty->assign('error', $error);
+        $this->smarty->assign('logueado', false);
+        $this->smarty->assign('usuario', "");
         $this->smarty->display('templates/login.tpl');
     }
 
@@ -22,6 +24,8 @@ class LoginView
     {
         $this->smarty->assign('titulo', 'Sign In');
         $this->smarty->assign('error', $error);
+        $this->smarty->assign('logueado', false);
+        $this->smarty->assign('usuario', "");
         $this->smarty->display('templates/signin.tpl');
     }
 

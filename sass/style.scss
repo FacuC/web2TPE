@@ -292,6 +292,55 @@ nav {
     }
 }
 
+.vinoTitulo {
+    text-align: center;
+    color: $primary;
+    margin: 3rem 0;
+}
+
+table {
+    margin: 4rem auto;
+    width: 100%;
+    th {
+        text-align: center;
+    }
+    td {
+        vertical-align: middle;
+        text-align: center;
+        img {
+            height: 8rem;
+            width: 4rem;
+            object-fit: contain;
+        }
+    }
+}
+
+.vinoContenedor {
+    margin: 3rem 0;
+    display: flex;
+    justify-content: space-evenly;
+    .detallesVino {
+        display: flex;
+        flex-flow: column;
+        justify-content: space-around;
+        width: 50%;
+        list-style-type: none;
+        text-align: center;
+         :first-child {
+            border-bottom: 1px solid $secondary;
+        }
+    }
+    .vinoImagen {
+        border: 1px solid $secondary;
+        display: flex;
+        justify-content: center;
+        width: 50%;
+        img {
+            object-fit: contain;
+        }
+    }
+}
+
 footer {
     display: flex;
     flex-wrap: wrap;

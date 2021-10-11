@@ -11,10 +11,12 @@ class BodegasView
         $this->smarty = new Smarty();
     }
 
-    function showBodegas($bodegas)
+    function showBodegas($bodegas, $logueado, $usuario)
     {
         $this->smarty->assign('titulo', "Bodegas");
         $this->smarty->assign('bodegas', $bodegas);
+        $this->smarty->assign('logueado', $logueado);
+        $this->smarty->assign('usuario', $usuario);
         $this->smarty->display('Templates/bodegas.tpl');
     }
 

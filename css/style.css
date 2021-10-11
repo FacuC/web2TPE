@@ -365,6 +365,78 @@ nav {
   border-bottom-style: solid;
 }
 
+.vinoTitulo {
+  text-align: center;
+  color: #222;
+  margin: 3rem 0;
+}
+
+table {
+  margin: 4rem auto;
+  width: 100%;
+}
+
+table th {
+  text-align: center;
+}
+
+table td {
+  vertical-align: middle;
+  text-align: center;
+}
+
+table td img {
+  height: 8rem;
+  width: 4rem;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+.vinoContenedor {
+  margin: 3rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.vinoContenedor .detallesVino {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  width: 50%;
+  list-style-type: none;
+  text-align: center;
+}
+
+.vinoContenedor .detallesVino :first-child {
+  border-bottom: 1px solid #857544;
+}
+
+.vinoContenedor .vinoImagen {
+  border: 1px solid #857544;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 50%;
+}
+
+.vinoContenedor .vinoImagen img {
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
 footer {
   display: -webkit-box;
   display: -ms-flexbox;

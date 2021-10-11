@@ -26,29 +26,54 @@ class VinosController
 
     function showHome()
     {
+        $logueado = false;
+        $usuario = "";
+        if ($this->authHelper->isLoggedIn()) {
+            $logueado = true;
+            $usuario = $this->authHelper->getUserName();
+        }
         $bodegas = $this->modelBodegas->getBodegas();
         $vinos = $this->model->getVinos();
-        $this->view->showVinos($vinos, $bodegas);
+        $this->view->showVinos($vinos, $bodegas, $logueado, $usuario);
     }
 
     function showVino($id)
     {
+        $logueado = false;
+        $usuario = "";
+        if ($this->authHelper->isLoggedIn()) {
+            $logueado = true;
+            $usuario = $this->authHelper->getUserName();
+        }
         $vino = $this->model->getVino($id);
         $bodegas = $this->modelBodegas->getBodegas();
-        $this->view->showVino($vino, $bodegas);
+        $this->view->showVino($vino, $bodegas, $logueado, $usuario);
     }
 
     function showVinosEnBodega($id_bodega)
     {
+        $logueado = false;
+        $usuario = "";
+        if ($this->authHelper->isLoggedIn()) {
+            $logueado = true;
+            $usuario = $this->authHelper->getUserName();
+        }
         $bodega = $this->modelBodegas->getBodega($id_bodega);
         $vinos = $this->model->getVinosEnBodega($id_bodega);
-        $this->view->showVinosEnBodega($vinos, $bodega);
+        $this->view->showVinosEnBodega($vinos, $bodega, $logueado, $usuario);
     }
 
     function createVino()
     {
         $this->authHelper->checkLoggedIn();
-        $this->model->insertVino($_POST['nombre'], $_POST['descripcion'], $_POST['precio'], $_POST['bodega']);
+        if ($_FILES['imagen']['type'] == "image/jpg" || $_FILES['imagen']['type'] == "image/jpeg" || $_FILES['imagen']['type'] == "image/png") {
+            $filePath = "img/" . uniqid("", true) . "." . strtolower(pathinfo($_FILES['imagen']['name'], PATHINFO_EXTENSION));
+            move_uploaded_file($_FILES["imagen"]["tmp_name"], $filePath);
+
+            $this->model->insertVino($_POST['nombre'], $_POST['descripcion'], $_POST['precio'], $_POST['bodega'],  $filePath);
+        } else
+            $this->model->insertVino($_POST['nombre'], $_POST['descripcion'], $_POST['precio'], $_POST['bodega']);
+
         $this->showHome();
     }
     function deleteVino($id)
@@ -60,7 +85,13 @@ class VinosController
     function updateVino($id)
     {
         $this->authHelper->checkLoggedIn();
-        $this->model->updateVino($id, $_POST['nombre'], $_POST['descripcion'], $_POST['precio'], $_POST['bodega']);
+        if ($_FILES['imagen']['type'] == "image/jpg" || $_FILES['imagen']['type'] == "image/jpeg" || $_FILES['imagen']['type'] == "image/png") {
+            $filePath = "img/" . uniqid("", true) . "." . strtolower(pathinfo($_FILES['imagen']['name'], PATHINFO_EXTENSION));
+            move_uploaded_file($_FILES["imagen"]["tmp_name"], $filePath);
+
+            $this->model->updateVino($id, $_POST['nombre'], $_POST['descripcion'], $_POST['precio'], $_POST['bodega'],  $filePath);
+        } else
+            $this->model->updateVino($id, $_POST['nombre'], $_POST['descripcion'], $_POST['precio'], $_POST['bodega']);
         $this->showVino($id);
     }
 
@@ -69,8 +100,14 @@ class VinosController
 
     function showBodegas()
     {
+        $logueado = false;
+        $usuario = "";
+        if ($this->authHelper->isLoggedIn()) {
+            $logueado = true;
+            $usuario = $this->authHelper->getUserName();
+        }
         $bodegas = $this->modelBodegas->getBodegas();
-        $this->viewBodegas->showBodegas($bodegas);
+        $this->viewBodegas->showBodegas($bodegas, $logueado, $usuario);
     }
 
     function createBodega()

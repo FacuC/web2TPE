@@ -33,19 +33,29 @@ class VinosModel
         return $vinos;
     }
 
-    function insertVino($nombre, $descripcion, $precio, $bodega)
+    function insertVino($nombre, $descripcion, $precio, $bodega, $filePath = "")
     {
-        $sentencia = $this->db->prepare("INSERT INTO vinos(nombre, descripcion, precio, fk_id_bodega) VALUES(?, ?, ?, ?)");
-        $sentencia->execute(array($nombre, $descripcion, $precio, $bodega));
+        if ($filePath != "") {
+            $sentencia = $this->db->prepare("INSERT INTO vinos(nombre, descripcion, precio, fk_id_bodega, imagen) VALUES(?, ?, ?, ?, ?)");
+            $sentencia->execute(array($nombre, $descripcion, $precio, $bodega, $filePath));
+        } else {
+            $sentencia = $this->db->prepare("INSERT INTO vinos(nombre, descripcion, precio, fk_id_bodega) VALUES(?, ?, ?, ?)");
+            $sentencia->execute(array($nombre, $descripcion, $precio, $bodega));
+        }
     }
     function deleteVino($id)
     {
         $sentencia = $this->db->prepare("DELETE FROM vinos WHERE id_vino=?");
         $sentencia->execute(array($id));
     }
-    function updateVino($id, $nombre, $descripcion, $precio, $bodega)
+    function updateVino($id, $nombre, $descripcion, $precio, $bodega, $filePath = "")
     {
-        $sentencia = $this->db->prepare("UPDATE vinos SET nombre=?, descripcion=?, precio=?, fk_id_bodega=? WHERE id_vino=?");
-        $sentencia->execute(array($nombre, $descripcion, $precio, $bodega, $id));
+        if ($filePath != "") {
+            $sentencia = $this->db->prepare("UPDATE vinos SET nombre=?, descripcion=?, precio=?, fk_id_bodega=?, imagen=? WHERE id_vino=?");
+            $sentencia->execute(array($nombre, $descripcion, $precio, $bodega, $filePath, $id));
+        } else {
+            $sentencia = $this->db->prepare("UPDATE vinos SET nombre=?, descripcion=?, precio=?, fk_id_bodega=? WHERE id_vino=?");
+            $sentencia->execute(array($nombre, $descripcion, $precio, $bodega, $id));
+        }
     }
 }
