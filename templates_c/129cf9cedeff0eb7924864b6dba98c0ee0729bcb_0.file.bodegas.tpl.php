@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-10-10 01:04:29
+/* Smarty version 3.1.39, created on 2021-10-14 23:24:27
   from 'C:\xampp\htdocs\TPEWeb2\Templates\bodegas.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_61621ffd6fb302_30545275',
+  'unifunc' => 'content_6168a00be4d352_77835766',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '129cf9cedeff0eb7924864b6dba98c0ee0729bcb' => 
     array (
       0 => 'C:\\xampp\\htdocs\\TPEWeb2\\Templates\\bodegas.tpl',
-      1 => 1633820667,
+      1 => 1634246663,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_61621ffd6fb302_30545275 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6168a00be4d352_77835766 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 <section class="seccionPrincipal">
@@ -53,7 +53,7 @@ $_smarty_tpl->_subTemplateRender("file:header.tpl", $_smarty_tpl->cache_id, $_sm
 <?php }?>
 
 
-<table class="table w-50 table-striped table-hover">
+<table class="table w-100 table-striped table-hover">
     <thead>
         <tr>
             <th>Bodega</th>

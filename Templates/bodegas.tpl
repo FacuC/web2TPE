@@ -27,7 +27,7 @@
 {/if}
 
 
-<table class="table w-50 table-striped table-hover">
+<table class="table w-100 table-striped table-hover">
     <thead>
         <tr>
             <th>Bodega</th>

@@ -270,7 +270,7 @@ nav {
 }
 
 .seccionPrincipal {
-  padding: 4rem 0;
+  padding: 4rem 0 2rem 0;
 }
 
 .seccionPrincipal h2 {
@@ -371,6 +371,19 @@ nav {
   margin: 3rem 0;
 }
 
+.deleteBodega {
+  width: 100%;
+  text-align: center;
+  margin: 0 auto 4rem auto;
+}
+
+.deleteBodega a {
+  padding: 0.5rem;
+  border-radius: 5px;
+  background-color: #a43b50;
+  color: white;
+}
+
 table {
   margin: 4rem auto;
   width: 100%;
@@ -390,6 +403,19 @@ table td img {
   width: 4rem;
   -o-object-fit: contain;
      object-fit: contain;
+}
+
+table tr td:first-child {
+  font-weight: 600;
+}
+
+table tr td:first-child a {
+  color: #857544;
+}
+
+table tr td:first-child a:hover {
+  -webkit-filter: brightness(1.2);
+          filter: brightness(1.2);
 }
 
 .vinoContenedor {
@@ -499,6 +525,67 @@ footer .media .mediaIcons i:hover {
 footer .disclaimer {
   width: 100%;
   text-align: center;
+}
+
+.loginTitle {
+  width: 100%;
+  text-align: center;
+  margin: 2rem auto;
+}
+
+.container {
+  border-radius: 5px;
+  max-width: 90%;
+  margin: 2rem auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-shadow: 0 0 5px 0px #222;
+          box-shadow: 0 0 5px 0px #222;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 2rem;
+  width: fit-content;
+}
+
+.container .logInLayout {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.container .logInLayout form input {
+  width: 100%;
+  margin: 0.6rem auto;
+}
+
+.container .logInLayout form .btn_login {
+  background-color: #857544;
+  border: 0;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.container .logInLayout form .btn_login:hover {
+  background-color: #857544;
+  -webkit-filter: brightness(1.5);
+          filter: brightness(1.5);
+}
+
+.alert-danger {
+  text-align: center;
+  width: 100%;
 }
 
 @media only screen and (min-width: 900px) {

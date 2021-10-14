@@ -214,7 +214,7 @@ nav {
 
 //--------</BURGERMENU>
 .seccionPrincipal {
-    padding: 4rem 0;
+    padding: 4rem 0 2rem 0;
     h2 {
         color: $secondary;
         text-align: center;
@@ -298,6 +298,18 @@ nav {
     margin: 3rem 0;
 }
 
+.deleteBodega {
+    width: 100%;
+    text-align: center;
+    margin: 0 auto 4rem auto;
+    a {
+        padding: 0.5rem;
+        border-radius: 5px;
+        background-color: #a43b50;
+        color: white;
+    }
+}
+
 table {
     margin: 4rem auto;
     width: 100%;
@@ -311,6 +323,19 @@ table {
             height: 8rem;
             width: 4rem;
             object-fit: contain;
+        }
+    }
+    tr {
+        td {
+            &:first-child {
+                font-weight: 600;
+                a {
+                    color: #857544;
+                    &:hover {
+                        filter: brightness(1.2);
+                    }
+                }
+            }
         }
     }
 }
@@ -386,6 +411,51 @@ footer {
         width: 100%;
         text-align: center;
     }
+}
+
+//---------LogIn---------
+.loginTitle {
+    width: 100%;
+    text-align: center;
+    margin: 2rem auto;
+}
+
+.container {
+    border-radius: 5px;
+    max-width: 90%;
+    margin: 2rem auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    box-shadow: 0 0 5px 0px #222;
+    width: fit-content;
+    padding: 2rem;
+    width: fit-content;
+    .logInLayout {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        form {
+            input {
+                width: 100%;
+                margin: 0.6rem auto;
+            }
+            .btn_login {
+                background-color: $secondary;
+                border: 0;
+                transition: all 0.5s ease;
+                &:hover {
+                    background-color: $secondary;
+                    filter: brightness(1.5);
+                }
+            }
+        }
+    }
+}
+
+.alert-danger {
+    text-align: center;
+    width: 100%;
 }
 
 @media only screen and (min-width: 900px) {

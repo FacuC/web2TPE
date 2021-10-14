@@ -1,7 +1,12 @@
 {include file="header.tpl"}
-<h1>{$bodega->nombre}</h1>
+<section class="seccionPrincipal">
+    <h2>{$bodega->nombre}</h2>
+</section>
+
 {if $logueado}
-    <a href="deleteBodega/{$bodega->id_bodega}">Borrar</a>
+    <div class="deleteBodega">
+        <a href="deleteBodega/{$bodega->id_bodega}">Borrar</a>
+    </div>
 {/if}
 
 {if $logueado}

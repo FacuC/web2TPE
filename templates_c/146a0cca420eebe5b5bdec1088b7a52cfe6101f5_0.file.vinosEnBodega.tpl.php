@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-10-11 23:30:18
+/* Smarty version 3.1.39, created on 2021-10-14 23:42:33
   from 'C:\xampp\htdocs\TPEWeb2\Templates\vinosEnBodega.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_6164acea992ec4_63374571',
+  'unifunc' => 'content_6168a4491dc162_25015061',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '146a0cca420eebe5b5bdec1088b7a52cfe6101f5' => 
     array (
       0 => 'C:\\xampp\\htdocs\\TPEWeb2\\Templates\\vinosEnBodega.tpl',
-      1 => 1633987811,
+      1 => 1634247749,
       2 => 'file',
     ),
   ),
@@ -22,14 +22,19 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_6164acea992ec4_63374571 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6168a4491dc162_25015061 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
-<h1><?php echo $_smarty_tpl->tpl_vars['bodega']->value->nombre;?>
-</h1>
+<section class="seccionPrincipal">
+    <h2><?php echo $_smarty_tpl->tpl_vars['bodega']->value->nombre;?>
+</h2>
+</section>
+
 <?php if ($_smarty_tpl->tpl_vars['logueado']->value) {?>
-    <a href="deleteBodega/<?php echo $_smarty_tpl->tpl_vars['bodega']->value->id_bodega;?>
+    <div class="deleteBodega">
+        <a href="deleteBodega/<?php echo $_smarty_tpl->tpl_vars['bodega']->value->id_bodega;?>
 ">Borrar</a>
+    </div>
 <?php }?>
 
 <?php if ($_smarty_tpl->tpl_vars['logueado']->value) {?>
