@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-10-2021 a las 23:45:51
+-- Tiempo de generación: 15-10-2021 a las 00:30:47
 -- Versión del servidor: 10.4.20-MariaDB
 -- Versión de PHP: 8.0.9
 
@@ -39,9 +39,9 @@ CREATE TABLE `bodegas` (
 --
 
 INSERT INTO `bodegas` (`id_bodega`, `nombre`, `ubicacion`, `contacto`) VALUES
-(1, 'bodegovich', 'mendoza', 'info@panconquesowines.com'),
-(2, 'bodega2', 'asdasdasd', '3232323'),
-(4, 'Bodega Zuccardi', 'mendoza', 'info@zuccardiwines.com');
+(1, 'Bodega Trapiche', 'Mendoza', 'info@trapiche.com'),
+(2, 'Bodega Luigi Bosca', 'Mendoza', 'info@luigibosca.com'),
+(4, 'Bodega Pernod Richard', 'Buenos Aires', 'info@pernodrichard.com');
 
 -- --------------------------------------------------------
 
@@ -60,9 +60,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `nombre`, `password`) VALUES
-(1, 'alf', '$2y$10$cYysfuzKuJNjG7d2V9szsOosiQcFn0uYhANvrzErDxaNRMqtBTwTy'),
-(2, 'alf', '$2y$10$Kkq9kPATGEQfwo16y3z47.yd3Icfr.Z81T95K5BsAWeHVHRU1QFsu'),
-(3, 'admin2', '$2y$10$nPRCN8GTXrAM9m64xHSYB.JgiLwcBb02AhyaCUyIE9X6lPXWfWI4.');
+(4, 'admin', '$2y$10$3oTZlXM2pUnxmcGVBHybc.yLFEDqPzIaH5Qe/2UFTXjesQLI6UMxW');
 
 -- --------------------------------------------------------
 
@@ -84,10 +82,10 @@ CREATE TABLE `vinos` (
 --
 
 INSERT INTO `vinos` (`id_vino`, `nombre`, `descripcion`, `precio`, `fk_id_bodega`, `imagen`) VALUES
-(29, 'asd', 'BTCH0001', 123123, 1, 'img/61649b6029e9e8.26958760.png'),
-(33, 'asd', 'BTCH0001', 1321321, 1, 'img/6164a7c53832c5.22240270.png'),
-(34, 'asd', 'BTCH0001', 1321321, 1, 'img/vinoejEmplo.jpg'),
-(35, 'alf', 'asasd', 123123, 1, 'img/6164a1d818de09.63009278.png');
+(29, 'Cafayate Cabernet Sauvignon', '750cc', 6000, 4, 'img/6168ae3a56f1e3.99608192.png'),
+(33, 'Fond de Cave Reserva Chardonay', '750cc', 8000, 1, 'img/6168ae5dbd3c35.60142786.png'),
+(34, 'Fond de Cave Reserva Malbec', '750cc', 5000, 1, 'img/6168aed314bc85.51373361.png'),
+(35, 'Finca La Linda Cabernet Sauvignon', '750cc', 8000, 2, 'img/6168aefc6a2a92.82595060.png');
 
 --
 -- Índices para tablas volcadas
@@ -126,7 +124,7 @@ ALTER TABLE `bodegas`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `vinos`
