@@ -1,0 +1,10 @@
+{
+    "smarty.highlightColor": {
+
+        "dark": "#FFFFFF25",
+        "light": "#FFFA0040"
+    },
+    "emmet.includeLanguages": {
+        "smarty": "html"
+      }
+}
