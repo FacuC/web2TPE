@@ -46,6 +46,14 @@ class ComentarioModel
         return $comentarios;
     }
 
+    function getComentariosFiltrados($id, $puntuacion)
+    {
+        $sentencia = $this->db->prepare("SELECT c.*, u.nombre AS usuario FROM comentarios c LEFT JOIN usuarios u ON c.fk_id_usuario = u.id_usuario WHERE fk_id_vino=? && puntuacion=?");
+        $sentencia->execute(array($id, $puntuacion));
+        $comentarios = $sentencia->fetchAll(PDO::FETCH_OBJ);
+        return $comentarios;
+    }
+
     function insertComment($comentario, $puntuacion, $idVino, $idUsuario)
     {
 

@@ -33,6 +33,14 @@ class VinosModel
         return $vinos;
     }
 
+    function buscarVinos($nombre, $descripcion, $precio, $bodega)
+    {
+        $sentencia = $this->db->prepare("SELECT vinos.*, bodegas.nombre as bodega FROM vinos JOIN bodegas ON vinos.fk_id_bodega=bodegas.id_bodega WHERE vinos.nombre LIKE ? && vinos.descripcion LIKE ? && vinos.precio LIKE ? && vinos.fk_id_bodega LIKE ?");
+        $sentencia->execute(array($nombre, $descripcion, $precio, $bodega));
+        $vinos = $sentencia->fetchAll(PDO::FETCH_OBJ);
+        return $vinos;
+    }
+
     function insertVino($nombre, $descripcion, $precio, $bodega, $filePath = "")
     {
         if ($filePath != "") {

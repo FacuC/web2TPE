@@ -14,7 +14,8 @@
             <a><i class="fas fa-star"></i></a>
             <a><i class="fas fa-star"></i></a>
             <a><i class="fas fa-star"></i></a>
-            <a><i class="fas fa-star"></i></a>
+            <a><i class="fas fa-star"></i></a> /
+            <span id="mostrarTodos">mostrar todos</span>
         </div>
         <ul id="lista-comentarios" class="list-group listComments">
             <li v-for="comentario in comentarios" class="list-group-item comment">

@@ -79,6 +79,9 @@ switch ($params[0]) {
     case 'deleteBodega':
         $vinosController->deleteBodega($params[1]);
         break;
+    case 'buscarVino':
+        $vinosController->buscarVino();
+        break;
 
 
     default:

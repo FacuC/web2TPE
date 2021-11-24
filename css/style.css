@@ -648,6 +648,37 @@ footer .disclaimer {
   color: #857544;
 }
 
+#app #filtrarPuntuacion {
+  margin: 2rem 0;
+  text-align: right;
+}
+
+#app #filtrarPuntuacion #mostrarTodos,
+#app #filtrarPuntuacion i {
+  cursor: pointer;
+}
+
+.formBuscar {
+  position: relative;
+  margin-bottom: 7rem;
+}
+
+.formBuscar .botonBuscar {
+  left: 50%;
+  width: 60%;
+  position: absolute;
+  -webkit-transform: translate(-50%, 200%);
+          transform: translate(-50%, 200%);
+  bottom: 0%;
+  border-radius: 0px 0px 5px 5px;
+  padding: 0.2rem;
+}
+
+.homeTitle {
+  margin-top: 4rem;
+  text-align: center;
+}
+
 .comentar {
   margin: 2rem;
 }

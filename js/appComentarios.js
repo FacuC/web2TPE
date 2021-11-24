@@ -64,6 +64,23 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    async function getComentariosFiltrados(puntuacion) {
+        // fetch para traer todos los comentarios
+        let url = document.querySelector("#dataVino").dataset.id_vino;
+
+        // api/comentarios/vino/77?puntuacion="2"
+        url += "?puntuacion=" + puntuacion;
+        console.log(url);
+        try {
+            let response = await fetch(API_URL + "/vino/" + url);
+            let comentariosAPI = await response.json();
+            app.comentarios = comentariosAPI;
+            console.log(response);
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
     async function agregarComentario(e) {
         e.preventDefault();
 
@@ -97,8 +114,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (res.ok) {
                     console.log(res);
                     getComentariosVino();
+                } else {
+                    alert("Debe loguearse para comentar");
                 }
             } catch (error) {
+                alert("Debe loguearse para comentar");
                 console.log(error);
             }
         }
@@ -111,8 +131,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 method: "DELETE",
             });
             console.log(response);
-            getComentariosVino();
+            if (response.ok) {
+                console.log(response);
+                getComentariosVino();
+            } else {
+                alert("Solo el administrador puede eliminar comentarios");
+            }
         } catch (e) {
+            alert("Solo el administrador puede eliminar comentarios");
             console.log(e);
         }
     }
@@ -120,6 +146,16 @@ document.addEventListener("DOMContentLoaded", () => {
     let enviarComentario = document.querySelector("#enviarComentario");
     let ordenarFecha = document.querySelector("#ordenFecha");
     let ordenarPuntuacion = document.querySelector("#ordenPuntuacion");
+    let filtrarPuntuacion = document.querySelectorAll("#filtrarPuntuacion i");
+    let mostrarTodos = document.querySelector("#mostrarTodos");
+
+    mostrarTodos.addEventListener("click", getComentariosVino);
+
+    filtrarPuntuacion.forEach((estrella, key) => {
+        estrella.addEventListener("click", () => {
+            getComentariosFiltrados(key + 1);
+        });
+    });
 
     enviarComentario.addEventListener("click", agregarComentario);
     ordenarFecha.addEventListener("click", () => {

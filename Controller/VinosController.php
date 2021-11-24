@@ -43,6 +43,38 @@ class VinosController
         }
     }
 
+    function buscarVino()
+    {
+
+        $this->authHelper->checkLoggedIn();
+
+        if (isset($_GET["nombre"]) && $_GET["nombre"] != "") {
+            $nombre = "%" . $_GET["nombre"] . "%";
+        } else {
+            $nombre = "%";
+        }
+
+        if (isset($_GET["descripcion"]) && $_GET["descripcion"] != "") {
+            $descripcion = "%" . $_GET["descripcion"] . "%";
+        } else {
+            $descripcion = "%";
+        }
+        if (isset($_GET["precio"]) && $_GET["precio"] != "") {
+            $precio = $_GET["precio"];
+        } else {
+            $precio = "%";
+        }
+        if (isset($_GET["bodega"]) && $_GET["bodega"] != "" && $_GET["bodega"] != "any") {
+            $bodega = $_GET["bodega"];
+        } else {
+            $bodega = "%";
+        }
+
+        $bodegas = $this->modelBodegas->getBodegas();
+        $vinos = $this->model->buscarVinos($nombre, $descripcion, $precio, $bodega);
+        $this->view->showVinos($vinos, $bodegas);
+    }
+
     function showVinosEnBodega($id_bodega, $error = null)
     {
         $bodega = $this->modelBodegas->getBodega($id_bodega);

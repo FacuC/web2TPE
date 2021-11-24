@@ -40,7 +40,7 @@
 <table class="table table-striped table-hover">
     <thead>
         <tr>
-            <th>Bebidas</th>
+            <th>Nombre</th>
             <th>Precios</th>
             <th>Bodega</th>
         </tr>

@@ -45,8 +45,26 @@ class ApiComentarioController
                 } else {
                     return $this->view->response("Parametros invalidos", 400);
                 }
+            } else if (isset($_GET['puntuacion']) && $_GET['puntuacion'] != "" && $_GET['puntuacion'] > 0 && $_GET['puntuacion'] <= 5) {
+                $comentarios = $this->model->getComentariosFiltrados($idVino, $_GET['puntuacion']);
             } else {
                 $comentarios = $this->model->getComentariosVino($idVino);
+            }
+            return $this->view->response($comentarios, 200);
+        } else {
+            return $this->view->response("Vino no encontrado", 404);
+        }
+    }
+
+    function getComentariosFiltrados($params = null)
+    {
+        $idVino = $params[":ID"];
+        $vino = $this->vinosModel->getVino($idVino);
+        if (!empty($vino)) {
+            if (isset($_GET['puntuacion']) && $_GET['puntuacion'] != "" && $_GET['puntuacion'] > 0 && $_GET['puntuacion'] <= 5) {
+                $comentarios = $this->model->getComentariosFiltrados($idVino, $_GET['puntuacion']);
+            } else {
+                return $this->view->response("parametro invalido", 400);
             }
             return $this->view->response($comentarios, 200);
         } else {
