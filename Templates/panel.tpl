@@ -18,10 +18,18 @@
                     {$user->id_usuario}
                 </td>
                 <td>
-                    {$user->nombre}
+                    {if $user->rol == 1} <i class="fas fa-user-cog"></i> {/if}{$user->nombre}
                 </td>
                 <td>
-                    <input type="checkbox" name="admin" id="admin" {if $user->rol == 1} checked{/if}>
+                    {if $user->rol == 1}
+                        {if $user->id_usuario != $smarty.session.id}
+                            <a href="quitarPermisos/{$user->id_usuario}">
+                                downgrade
+                            </a>
+                        {/if}
+                    {else}
+                        <a href="otorgarPermisos/{$user->id_usuario}">upgrade</a>
+                    {/if}
                 </td>
                 <td>
                     <a href="deleteUser/{$user->id_usuario}">borrar</a>

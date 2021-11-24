@@ -12,6 +12,7 @@ $router = new Router();
 $router->addRoute('comentarios', 'GET', 'ApiComentarioController', 'obtenerComentarios');
 $router->addRoute('comentarios/vino/:ID', 'GET', 'ApiComentarioController', 'getComentariosVino');
 $router->addRoute('comentarios/vino/:ID', 'POST', 'ApiComentarioController', 'insertarComentario');
+$router->addRoute('comentarios/deleteComment/:ID', 'DELETE', 'ApiComentarioController', 'deleteComment');
 
 // rutea
 $router->route($_GET["resource"], $_SERVER['REQUEST_METHOD']);

@@ -28,6 +28,12 @@ switch ($params[0]) {
     case 'login':
         $loginController->login();
         break;
+    case 'otorgarPermisos':
+        $loginController->ascenderUsuario($params[1]);
+        break;
+    case 'quitarPermisos':
+        $loginController->quitarPermisos($params[1]);
+        break;
     case 'logout':
         $loginController->logout();
         break;

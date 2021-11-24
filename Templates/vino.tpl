@@ -56,9 +56,22 @@
 
 <form action=""></form>
 
+<h3 class="comentar">Comentar</h3>
 <form action="api/comentarios" id="dataVino" data-id_vino="{$vino->id_vino}" method="post">
+    <div class="puntuacion">
+        <input type="radio" id="1star" name="puntuacion" value="1">
+        <label for="1star"><i class="fas fa-star"></i></label>
+        <input type="radio" id="2star" name="puntuacion" value="2">
+        <label for="2star"><i class="fas fa-star"></i></label>
+        <input type="radio" id="3star" name="puntuacion" value="3">
+        <label for="3star"><i class="fas fa-star"></i></label>
+        <input type="radio" id="4star" name="puntuacion" value="4">
+        <label for="4star"><i class="fas fa-star"></i></label>
+        <input type="radio" id="5star" name="puntuacion" value="5" checked>
+        <label for="5star"><i class="fas fa-star"></i></label>
+    </div>
     <textarea name="comentario" id="comentario" cols="30" rows="10"></textarea>
-    <input type="range" name="puntuacion" id="puntuacion" min="1" max="5" value="5">
+    <!--<input type="range" name="puntuacion" id="puntuacion" min="1" max="5" value="5">-->
     <button type="submit" id="enviarComentario">Comentar</button>
 </form>
 

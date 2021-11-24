@@ -81,7 +81,9 @@ class VinosController
         $this->authHelper->checkAdmin();
         $vino = $this->model->getVino($id);
         if (!empty($vino)) {
-            unlink($vino->imagen); //eliminar del sistema de archivos la imagen asociada al item
+            if (!($vino->imagen == "img/vinoEjemplo.png")) { //no borrar la imagen de muestra
+                unlink($vino->imagen); //borrar imagen
+            }
             $this->model->deleteVino($id);
             $this->showHome();
         } else {
@@ -98,7 +100,10 @@ class VinosController
                 move_uploaded_file($_FILES["imagen"]["tmp_name"], $filePath);
 
                 $vino = $this->model->getVino($id);
-                unlink($vino->imagen); //borrar imagen anterior
+
+                if (!($vino->imagen == "img/vinoEjemplo.png")) { //no borrar la imagen de muestra
+                    unlink($vino->imagen); //borrar imagen anterior
+                }
 
                 $this->model->updateVino($id, $_POST['nombre'], $_POST['descripcion'], $_POST['precio'], $_POST['bodega'],  $filePath);
             }

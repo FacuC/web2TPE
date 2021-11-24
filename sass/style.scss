@@ -360,6 +360,7 @@ table {
         display: flex;
         justify-content: center;
         width: 50%;
+        height: 50vh;
         img {
             object-fit: contain;
         }
@@ -456,6 +457,91 @@ footer {
 .alert-danger {
     text-align: center;
     width: 100%;
+}
+
+#app {
+    margin: 2rem 2rem;
+    h2 {
+        margin: 2rem 2rem;
+    }
+    #sortButtons {
+        margin: 2rem 2rem;
+        input {
+            border: 0;
+            background-color: white;
+            font-size: 0.8rem;
+            color: $secondary;
+        }
+    }
+    .botonEliminar {
+        background-color: white;
+        border: 0;
+        font-size: 0.8rem;
+        color: red;
+        position: absolute;
+        right: 0px;
+        top: 0.5rem;
+    }
+    .listComments {
+        .comment {
+            display: flex;
+            flex-wrap: wrap;
+            .fecha {
+                color: #444;
+                font-size: 0.8rem;
+                width: 100%;
+                text-align: end;
+            }
+            .comentarioTexto {
+                width: 100%;
+                padding: 2rem;
+            }
+            .usuario {
+                font-size: 1.1rem;
+                border-bottom: 1px solid $primary;
+                i {
+                    color: $secondary;
+                }
+            }
+            font-size: 0.9rem;
+        }
+    }
+}
+
+.comentar {
+    margin: 2rem;
+}
+
+#dataVino {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 2rem;
+    textarea {
+        width: 100%;
+        margin: 1rem 0;
+    }
+    button {
+        background-color: $details;
+        color: white;
+        border: 0;
+        border-radius: 5px;
+        padding: 0.8rem;
+    }
+    .puntuacion {
+        input {
+            display: none;
+        }
+        background: linear-gradient( 90deg,
+        rgba(164, 145, 59, 1) 100%,
+        rgb(163, 163, 163) 100%);
+        background-clip: text !important;
+        -webkit-background-clip: text !important;
+        color: transparent;
+        font-size: 1.5rem;
+         :hover {
+            text-shadow: 0 0 5px gold;
+        }
+    }
 }
 
 @media only screen and (min-width: 900px) {

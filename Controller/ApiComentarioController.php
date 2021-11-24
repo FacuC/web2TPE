@@ -36,16 +36,27 @@ class ApiComentarioController
         $idVino = $params[":ID"];
         $vino = $this->vinosModel->getVino($idVino);
         if (!empty($vino)) {
-            $comentarios = $this->model->getComentariosVino($idVino);
+
+            if (isset($_GET['sort']) && $_GET['sort'] != "" && isset($_GET['order']) && $_GET['order'] != "") {
+                $orderby = $this->white_list($_GET['sort'], ['puntuacion', 'fecha'], 'invalid arguments');
+                $direccion = $this->white_list($_GET['order'], ['ASC', 'DESC'], 'invalid arguments');
+                if ($orderby && $direccion) {
+                    $comentarios = $this->model->getComentariosOrdenados($idVino, $orderby, $direccion);
+                } else {
+                    return $this->view->response("Parametros invalidos", 400);
+                }
+            } else {
+                $comentarios = $this->model->getComentariosVino($idVino);
+            }
             return $this->view->response($comentarios, 200);
         } else {
-            $this->view->response("Vino no encontrado", 404);
+            return $this->view->response("Vino no encontrado", 404);
         }
     }
 
     function insertarComentario($params = null)
     {
-        $this->authHelper->checkLoggedIn();
+        //$this->authHelper->checkLoggedIn();
         $idUser = $this->authHelper->getUserId();
         $userName = $this->authHelper->getUserName();
         $idVino = $params[":ID"];
@@ -56,21 +67,55 @@ class ApiComentarioController
 
         if (!empty($usuario)) {
             if (!empty($vino)) {
-                if (isset($body->comentario) && $body->comentario != "" && isset($body->puntuacion) && $body->puntuacion != "") {
+                if (isset($body->comentario) && $body->comentario != "" && isset($body->puntuacion) && $body->puntuacion != "" && $body->puntuacion > 0 && $body->puntuacion <= 5) {
                     $id = $this->model->insertComment($body->comentario, $body->puntuacion, $idVino, $idUser);
                     if ($id != 0) {
-                        $this->view->response("El comentario se insertó con el id=$id", 200);
+                        return $this->view->response("El comentario se insertó con el id=$id", 200);
                     } else {
-                        $this->view->response("El comentario no se pudo insertar", 500);
+                        return $this->view->response("El comentario no se pudo insertar", 500);
                     }
                 } else {
-                    $this->view->response("Valores invalidos", 400);
+                    return $this->view->response("Valores invalidos", 400);
                 }
             } else {
-                $this->view->response("Vino no encontrado", 404);
+                return $this->view->response("Vino no encontrado", 404);
             }
         } else {
-            $this->view->response("Error al verificar el usuario", 403);
+            return $this->view->response("Error al verificar el usuario", 403);
+        }
+    }
+
+    function deleteComment($params = null)
+    {
+        //$this->authHelper->checkAdmin();
+        $userName = $this->authHelper->getUserName();
+        $rol = $this->authHelper->isAdmin();
+        $usuario = $this->userModel->getUser($userName);
+        $idComment = $params[":ID"];
+        $comentario = $this->model->getComentario($idComment);
+
+        if (!empty($usuario) && $rol) {
+            if ($comentario) {
+                $this->model->deleteComentario($idComment);
+                return $this->view->response("El comentario con el id=$idComment fue borrado", 200);
+            } else {
+                return $this->view->response("El comentario con el id=$idComment no existe", 404);
+            }
+        } else {
+            return $this->view->response("Error al verificar el usuario", 401);
+        }
+    }
+
+    private function white_list(&$value, $allowed)
+    {
+        if ($value === null) {
+            return $allowed[0];
+        }
+        $key = array_search($value, $allowed, true);
+        if ($key === false) {
+            return false;
+        } else {
+            return $value;
         }
     }
 

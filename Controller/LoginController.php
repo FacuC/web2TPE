@@ -83,4 +83,18 @@ class LoginController
         $this->model->deleteUser($id);
         $this->adminPanel();
     }
+
+    function ascenderUsuario($id)
+    {
+        $this->authHelper->checkAdmin();
+        $this->model->ascenderUser($id);
+        $this->adminPanel();
+    }
+
+    function quitarPermisos($id)
+    {
+        $this->authHelper->checkAdmin();
+        $this->model->quitarPermisos($id);
+        $this->adminPanel();
+    }
 }

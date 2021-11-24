@@ -60,9 +60,9 @@ class AuthHelper
         return $_SESSION["id"];
     }
 
-    function getUserRol()
+    function isAdmin()
     {
         $this->verify();
-        return $_SESSION["rol"];
+        return $_SESSION['admin'];
     }
 }
